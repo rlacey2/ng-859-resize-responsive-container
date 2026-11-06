@@ -1,0 +1,235 @@
+@use "sass:math";
+ 
+button {
+  padding: 8px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+button.active {
+  background-color: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+/* preview.component.scss */
+
+/* row-cols-*
+In Bootstrap, "row columns" refers specifically to the .row-cols-* utility classes used to set the number of columns you want inside a row at the parent level, rather than defining widths on every individual child column.
+Instead of adding width classes like .col-md-4 to every single element, you can apply .row-cols-3 directly to the parent .row container. This tells Bootstrap to automatically wrap columns onto new lines once that threshold is reached.
+*/
+
+.w-mobile { width: 375px; }
+.w-tablet { width: 768px; }
+.w-desktop { width: 98vw; max-width: 98vw; }
+
+/* 1. Register the component frame as an isolated container */
+.preview-frame {
+  container-type: inline-size;
+  container-name: bs-preview;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  
+  .row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+  }
+}
+
+/* ==========================================================================
+   MOBILE CONDITION: Container Width < 576px
+   ========================================================================== */
+@container bs-preview (max-width: 575.98px) {
+  .preview-frame {
+    /* Reset upper responsive tiers to vertical stacks */
+    [class*="col-sm-"],
+    [class*="col-md-"],
+    [class*="col-lg-"],
+    [class*="col-xl-"] {
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+
+    /* Reset all larger row-column grids back to 1 column on mobile */
+    .row[class*="row-cols-sm-"],
+    .row[class*="row-cols-md-"],
+    .row[class*="row-cols-lg-"] {
+      > * {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+      }
+    }
+
+    /* Clear upper offsets on mobile layout so items don't push out of bounds */
+    [class*="offset-sm-"],
+    [class*="offset-md-"],
+    [class*="offset-lg-"] {
+      margin-left: 0 !important;
+    }
+
+    /* Build basic 1-12 columns and explicit base offsets */
+    @for $i from 1 through 12 {
+      .col-#{$i} {
+        $pct: math.percentage(calc($i / 12));
+        flex: 0 0 $pct !important;
+        max-width: $pct !important;
+        width: $pct !important;
+      }
+      /* Base mobile offsets (e.g. offset-2) */
+      @if $i < 12 {
+        .offset-#{$i} {
+          margin-left: math.percentage(calc($i / 12)) !important;
+        }
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+   TABLET CONDITION: Container Width between 576px and 991.98px
+   ========================================================================== */
+@container bs-preview (min-width: 576px) and (max-width: 991.98px) {
+  .preview-frame {
+    @for $i from 1 through 12 {
+      /* Columns */
+      .col-sm-#{$i},
+      .col-md-#{$i} {
+        $pct: math.percentage(calc($i / 12));
+        flex: 0 0 $pct !important;
+        max-width: $pct !important;
+        width: $pct !important;
+      }
+
+      /* Offsets */
+      @if $i < 12 {
+        .offset-sm-#{$i},
+        .offset-md-#{$i} {
+          margin-left: math.percentage(calc($i / 12)) !important;
+        }
+      }
+
+      /* Row Columns (e.g., row-cols-sm-3 -> sets children width to 1/3) */
+      @if $i <= 6 {
+        .row.row-cols-sm-#{$i},
+        .row.row-cols-md-#{$i} {
+          > * {
+            flex: 0 0 math.percentage(calc(1 / $i)) !important;
+            max-width: math.percentage(calc(1 / $i)) !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+   DESKTOP CONDITION: Container Width >= 992px
+   ========================================================================== */
+@container bs-preview (min-width: 992px) {
+  .preview-frame {
+    @for $i from 1 through 12 {
+      /* Columns */
+      .col-lg-#{$i},
+      .col-xl-#{$i} {
+        $pct: math.percentage(calc($i / 12));
+        flex: 0 0 $pct !important;
+        max-width: $pct !important;
+        width: $pct !important;
+      }
+
+      /* Offsets */
+      @if $i < 12 {
+        .offset-lg-#{$i},
+        .offset-xl-#{$i} {
+          margin-left: math.percentage(calc($i / 12)) !important;
+        }
+      }
+
+      /* Row Columns */
+      @if $i <= 6 {
+        .row.row-cols-lg-#{$i},
+        .row.row-cols-xl-#{$i} {
+          > * {
+            flex: 0 0 math.percentage(calc(1 / $i)) !important;
+            max-width: math.percentage(calc(1 / $i)) !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.profile-card {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center; 
+}
+
+/*
+@container (min-width: 500px) {
+  .profile-card {
+    flex-direction: row;
+    padding: 24px;
+    text-align: left;
+  }
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@container (min-width: 900px) {
+  .profile-card {
+    padding: 32px;
+    justify-content: space-between;
+  }
+  .info h2 {
+    font-size: 1.75rem;
+  }
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #3b82f6;
+}
+
+.info h2 {
+  margin: 0 0 4px 0;
+  font-size: 1.25rem;
+  color: #111827;
+}
+
+.info p {
+  margin: 0;
+  color: #4b5563;
+  font-size: 0.9rem;
+}
+
+
+
+
+

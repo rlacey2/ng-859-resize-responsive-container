@@ -1,4 +1,4 @@
-<div class="controls">
+<div class=" d-flex justify-content-center align-items-center">
   <button 
     [class.active]="currentSizeClass() === 'w-mobile'" 
     (click)="setSize('w-mobile')">
@@ -12,13 +12,13 @@
   <button 
     [class.active]="currentSizeClass() === 'w-desktop'" 
     (click)="setSize('w-desktop')">
-    Desktop (1200px)
+    Desktop (100vw)
   </button>
 </div>
 
-<div class="preview-frame" [ngClass]="currentSizeClass()">
+<div class="preview-frame overflow-hidden " [ngClass]="currentSizeClass()">
   <div class="profile-card">
-    <div class="avatar"></div>
+    <div class="zzavatar"></div>
     <div class="info">
       <h2>Hello Angular World!</h2>
       <p>I automatically change my entire layout configuration based entirely on my parent container's width restrictions.</p>
@@ -26,7 +26,11 @@
 
     <div class="d-flex flex-column">
          <div class="box flex-grow-1 p-4 rounded d-flex align-items-center justify-content-center shadow-sm">
-      Item A
+      Item A1
+    </div>
+
+             <div class="box flex-grow-1 p-4 rounded d-flex align-items-center justify-content-center shadow-sm">
+      Item A2
     </div>
     <div class="box flex-grow-1 p-4 rounded d-flex align-items-center justify-content-center shadow-sm">
       Item B
@@ -36,4 +40,160 @@
     </div>
     </div>
   </div>
+
+  <div
+        class="  d-flex flex-column mh-100 rounded ms-1 me-1 ps-2 pe-2 zzscroll-y flex-grow-1"
+      >
+        <!-- the component body structure is inserted within this div to have sticky header and fiiter -->
+
+ 
+
+        <p class="mt-2">This is a testbed for some ui concepts.</p>
+
+
+column with nested column relative
+        <div class="row">
+  <div class="col-sm-8 bg-danger"> <!-- Outer Column -->
+    <div class="row">
+      <div class="col-sm-9 bg-warning ">Inner Column relative to parent</div> <!-- Might miscalculate if styles bleed downward -->
+    </div>
+  </div>
+</div>
+
+
+        Responsive Column Testing
+
+       
+
+
+        <div class="">
+          <div class="row">
+            <div class="ahdoc-container d-flex flex-column bg-info asdf {{ colFitClasses.xs1sm3 }} ">
+              
+              <div class="adhoc-label mt-auto">
+                <div>
+                  Alpha: To be, or not to be: that is the question: Whether 'tis nobler
+                  in the mind to suffer
+                </div>
+              </div>
+              <div
+                class="adhoc-input-justify d-flex flex-row justify-content-start"
+              >
+                <div class="adhoc-input border border-1 w-50">
+                  the input box
+                </div>
+              </div>
+            </div>
+
+            <div class="ahdoc-container {{ colFitClasses.xs1sm3 }} d-flex flex-column bg-warning">
+              <div class="adhoc-label mt-auto">
+                <div>
+                  Beta: To be, or not to be: that is the question: Whether 'tis nobler
+                  in the mind to suffer / The slings and arrows of outrageous
+                  fortune - To be, or not to be: that is the question: Whether 'tis nobler
+                  in the mind to suffer / The slings and arrows of outrageous
+                  fortune -
+                </div>
+              </div>
+              <div
+                class="adhoc-input-justify d-flex flex-row justify-content-center"
+              >
+                <div class="adhoc-input border border-1 w-50">
+                  the input box
+                </div>
+              </div>
+            </div>
+            <div class="ahdoc-container {{ colFitClasses.xs1sm3 }} d-flex flex-column bg-primary offset-sm-4">
+              <div class="adhoc-label-justify mt-auto adhoc-input-justify d-flex flex-row justify-content-end">
+                <div class="adhoc-label">To be </div>
+              </div>
+Gamma:
+              <div
+                class="adhoc-input-justify d-flex flex-row justify-content-end"
+              >
+                <div class="adhoc-input border border-1 w-50">
+                  the input box
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr />
+          <div class=" container bg-success">
+            <div class="row row-cols-2">
+              <div class="{{ colFitClasses.xs1sm1 }}">xs1sm1 always one</div>
+
+              <div class="{{ colFitClasses.xs1sm2 }}">xs1sm2 two</div>
+              <div class="{{ colFitClasses.xs1sm2 }}">xs1sm2 two</div>
+
+              <div class="{{ colFitClasses.xs1sm3 }}">xs1sm3 three</div>
+              <div class="{{ colFitClasses.xs1sm3 }}">xs1sm3 three</div>
+              <div class="{{ colFitClasses.xs1sm3 }}">xs1sm3 three</div>
+
+              <div class="{{ colFitClasses.xs2sm4 }}">xs2sm4 four</div>
+              <div class="{{ colFitClasses.xs2sm4 }}">xs2sm4 four</div>
+              <div class="{{ colFitClasses.xs2sm4 }}">xs2sm4 four</div>
+              <div class="{{ colFitClasses.xs2sm4 }}">xs2sm4 four</div>
+
+              <div class="{{ colFitClasses.xs1sm3 }}">xs1sm3 three</div>
+              <div class="{{ colFitClasses.xs1sm3 }}">xs1sm3 three</div>
+              <div class="{{ colFitClasses.xs1sm3 }}">xs1sm3 three</div>
+
+              <div
+                class="{{ colFitClasses.xs1sm2 }} "
+                style="min-width: 400px;"
+              >
+                <div class="bg-info ps-0">xs1sm2 Two min-with 400px</div>
+              </div>
+              <div class="{{ colFitClasses.xs1sm2 }}" style="min-width: 420px;">
+                <div class="bg-info">xs1sm2 Two min-with 420px</div>
+              </div>
+
+              <div class="col-sm-12 bg-primary" style="height:0px">&nbsp;</div>
+              <div class="col-12 bg-warning">
+                hidden col-12 line break above
+              </div>
+            </div>
+          </div>
+          <div>
+            <p></p>
+            <p>
+              max is 4 columns 1) Can share row 2) never share row on xs etc
+            </p>
+          </div>
+
+          <div class="container text-center bg-danger">
+            <div class="form-group row">
+              <div class="col-12 col-sm-6">Columnddd</div>
+              <div class="col-12 col-sm-6">Column</div>
+            </div>
+          </div>
+          <hr />
+
+          <hr />
+          <!--
+        <p>
+          <mat-form-field appearance="fill">
+            <mat-label>Fill form field</mat-label>
+            <input matInput placeholder="Placeholder" />
+
+            <mat-hint>Hint</mat-hint>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Outline form field</mat-label>
+            <input matInput placeholder="Placeholder" />
+
+            <mat-hint>Hint</mat-hint>
+          </mat-form-field>
+        </p>
+
+    -->
+
+ 
+        </div>
+      </div>
+
+
 </div>
