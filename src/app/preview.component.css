@@ -1,0 +1,85 @@
+.controls {
+  margin-bottom: 24px;
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  padding: 8px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+button.active {
+  background-color: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+.preview-frame {
+  container-type: inline-size;
+  border: 2px dashed #9ca3af;
+  border-radius: 8px;
+  background-color: white;
+  transition: width 0.3s ease-in-out;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.w-mobile { width: 375px; }
+.w-tablet { width: 768px; }
+.w-desktop { width: 100vw; max-width: 1200px; }
+
+.profile-card {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #3b82f6;
+}
+
+.info h2 {
+  margin: 0 0 4px 0;
+  font-size: 1.25rem;
+  color: #111827;
+}
+
+.info p {
+  margin: 0;
+  color: #4b5563;
+  font-size: 0.9rem;
+}
+
+@container (min-width: 500px) {
+  .profile-card {
+    flex-direction: row;
+    padding: 24px;
+    text-align: left;
+  }
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@container (min-width: 900px) {
+  .profile-card {
+    padding: 32px;
+    justify-content: space-between;
+  }
+  .info h2 {
+    font-size: 1.75rem;
+  }
+}

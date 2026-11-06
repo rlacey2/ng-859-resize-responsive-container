@@ -1,0 +1,39 @@
+<div class="controls">
+  <button 
+    [class.active]="currentSizeClass() === 'w-mobile'" 
+    (click)="setSize('w-mobile')">
+    Mobile (375px)
+  </button>
+  <button 
+    [class.active]="currentSizeClass() === 'w-tablet'" 
+    (click)="setSize('w-tablet')">
+    Tablet (768px)
+  </button>
+  <button 
+    [class.active]="currentSizeClass() === 'w-desktop'" 
+    (click)="setSize('w-desktop')">
+    Desktop (1200px)
+  </button>
+</div>
+
+<div class="preview-frame" [ngClass]="currentSizeClass()">
+  <div class="profile-card">
+    <div class="avatar"></div>
+    <div class="info">
+      <h2>Hello Angular World!</h2>
+      <p>I automatically change my entire layout configuration based entirely on my parent container's width restrictions.</p>
+    </div>
+
+    <div class="d-flex flex-column">
+         <div class="box flex-grow-1 p-4 rounded d-flex align-items-center justify-content-center shadow-sm">
+      Item A
+    </div>
+    <div class="box flex-grow-1 p-4 rounded d-flex align-items-center justify-content-center shadow-sm">
+      Item B
+    </div>
+    <div class="box flex-grow-1 p-4 rounded d-flex align-items-center justify-content-center shadow-sm">
+      Item C
+    </div>
+    </div>
+  </div>
+</div>
